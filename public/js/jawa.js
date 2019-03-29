@@ -12,12 +12,13 @@ $(document).ready(function(){
     });
     $("#inputEmail").blur(function(){
         var email    = $("#inputEmail").val();
-        var pesan    = "Email Terverifikasi ";
         if (email == "") {
             $("#bintang2").text("*");
             $("#inputEmail").css("border-color", "#a94442");
         }else if (email.search('@')>=0) {
-            $("#pesanEmail").text(pesan);
+            $("#pesanEmail").text("");
+            $("#bintang2").text("");
+            $("#inputEmail").css("border-color", "");
         }else {
             $("#bintang2").text("*");
             $("#inputEmail").css("border-color", "#a94442");

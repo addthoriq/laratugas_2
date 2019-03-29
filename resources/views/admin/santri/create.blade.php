@@ -33,7 +33,7 @@
                 </div>
             @endif --}}
             <!-- form start -->
-            <form class="form-horizontal" method="post" action="{{url('admin/santri')}}">
+            <form class="form-horizontal" method="post" action="{{url('admin/santri')}}" enctype="multipart/form-data">
                 @csrf
               <div class="box-body">
                 <div class="form-group">
@@ -82,6 +82,13 @@
                             Perempuan
                         </label>
                     </div>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputFile" class="col-sm-2 control-label">File input</label>
+                  <div class="file col-sm-10">
+                      <input type="file" id="exampleInputFile" name="poto">
+                      <p class="help-block">* .Jpg, .jpg, .jpeg, .png</p>
+                  </div>
                 </div>
               </div>
               <!-- /.box-body -->
