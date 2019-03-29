@@ -28,8 +28,7 @@
               <div class="box-body">
                   <input type="hidden" name="id" class="form-control" id="inputNama" value="{{$santri->id}}">
                 <div class="form-group">
-                  <label for="inputNama" class="col-sm-2 control-label">Nama</label>
-                  <div class="col-sm-10">
+                  <label for="inputNama" class="col-sm-2 control-label"><span class="text-danger" id="bintang"></span>Nama</label>                  <div class="col-sm-10">
                     <input type="text" name="nama" class="form-control" id="inputNama" value="{{$santri->nama}}">
                     @if ($errors->has('nama'))
                         <span class="text-danger">
@@ -39,9 +38,9 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="input" class="col-sm-2 control-label">Email</label>
+                  <label for="inputEmail" class="col-sm-2 control-label"><span class="text-danger" id="bintang2"></span>Email</label>
                   <div class="col-sm-10">
-                    <input type="email" name="email" class="form-control" id="input" value="{{$santri->email}}">
+                    <input type="email" name="email" class="form-control" id="inputEmail" value="{{$santri->email}}">
                     @if ($errors->has('email'))
                         <span class="text-danger">
                             {{$errors->first('email')}}
