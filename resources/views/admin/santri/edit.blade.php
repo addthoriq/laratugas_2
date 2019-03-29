@@ -22,7 +22,7 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form class="form-horizontal" method="post" action="{{url('admin/santri')}}">
+            <form class="form-horizontal" method="post" action="{{url('admin/santri')}}" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
               <div class="box-body">
@@ -31,12 +31,22 @@
                   <label for="inputNama" class="col-sm-2 control-label">Nama</label>
                   <div class="col-sm-10">
                     <input type="text" name="nama" class="form-control" id="inputNama" value="{{$santri->nama}}">
+                    @if ($errors->has('nama'))
+                        <span class="text-danger">
+                            {{$errors->first('nama')}}
+                        </span>
+                    @endif
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="input" class="col-sm-2 control-label">Email</label>
                   <div class="col-sm-10">
                     <input type="email" name="email" class="form-control" id="input" value="{{$santri->email}}">
+                    @if ($errors->has('email'))
+                        <span class="text-danger">
+                            {{$errors->first('email')}}
+                        </span>
+                    @endif
                   </div>
                 </div>
                 <div class="form-group">
@@ -51,12 +61,19 @@
                         <label for="optionsRadios1">
                             <input type="radio" name="gender" id="optionsRadios1" value="1" {{($santri->gender)?'checked':''}}>
                         Laki-laki
-                    </label><br>
+                        </label><br>
                         <label for="optionsRadios2">
                             <input type="radio" name="gender" id="optionsRadios2" value="0" {{($santri->gender)?'':'checked'}}>
                             Perempuan
                         </label>
                     </div>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputFile" class="col-sm-2 control-label">File input</label>
+                  <div class="file col-sm-10">
+                      <input type="file" id="exampleInputFile" name="poto" value="{{$santri->poto}}">
+                      <p class="help-block">* .Jpg, .jpg, .jpeg, .png</p>
+                  </div>
                 </div>
               </div>
               <!-- /.box-body -->

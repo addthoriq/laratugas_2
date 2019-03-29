@@ -23,9 +23,8 @@ class AdminController extends Controller
             'nama'  => 'required',
             'email'  => 'required|max:30',
             'password'  => 'required|max:30',
+            'gender'    => 'required'
         ]);
-        if ($request->hasFile('poto')) {
-        }
         $poto       = $request->file('poto');
         $path  = $poto->store('public/gambarSantri');
         $santri         = new SantriModel;
@@ -59,13 +58,32 @@ class AdminController extends Controller
     }
     public function update(Request $request)
     {
-        $id     = $request->id;
-        SantriModel::find($id)->update([
-            'nama'  => $request->nama,
-            'email'  => $request->email,
-            'password'  => bcrypt($request->password),
-            'gender'  => $request->gender,
+        $this->validate($request,[
+            'nama'  => 'required',
+            'email'  => 'required|max:30',
         ]);
+        $id     = $request->id;
+        if ($request->hasFile('poto'))
+        {
+            $poto   = $request->file('poto');
+            $path   = $poto->store('public/gambarSantri');
+            SantriModel::find($id)->update([
+                'nama'  => $request->nama,
+                'email'  => $request->email,
+                'password'  => bcrypt($request->password),
+                'gender'  => $request->gender,
+                'poto'  => $path
+            ]);
+        }
+        else
+        {
+            SantriModel::find($id)->update([
+                'nama'  => $request->nama,
+                'email'  => $request->email,
+                'password'  => bcrypt($request->password),
+                'gender'  => $request->gender,
+            ]);
+        }
         return redirect('admin/santri');
     }
     public function delete($id)
