@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Model\SantriModel;
+use App\Http\Controllers\Controller;
 
-class AdminController extends Controller
+class SantriController extends Controller
 {
     protected $folder   = 'admin.santri';
     public function index()

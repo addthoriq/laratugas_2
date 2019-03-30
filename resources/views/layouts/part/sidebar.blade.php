@@ -31,8 +31,8 @@
         </span>
       </a>
       <ul class="treeview-menu">
-        <li class="active"><a href="{{url('/admin')}}"><i class="fa fa-circle-o"></i> Beranda</a></li>
-        <li><a href="../../index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
+        <li class="{{Request::is('admin/guru','admin/guru/create')?'active':''}}"><a href="{{url('/admin/guru')}}"><i class="fa fa-circle-o"></i> Asatidz</a></li>
+        <li class="{{Request::is('admin/santri', 'admin/santri/create')?'active':''}}"><a href="{{url('/admin/santri')}}"><i class="fa fa-circle-o"></i> Santri</a></li>
       </ul>
     </li>
   </ul>

@@ -17,10 +17,16 @@ Route::get('', function () {
 
 //Admin
 Route::prefix('admin')->group(function(){
-    Route::get('santri', 'AdminController@index');
-    Route::get('santri/create', 'AdminController@create');
-    Route::post('santri', 'AdminController@store');
-    Route::get('santri/{id}/edit', 'AdminController@edit');
-    Route::put('santri', 'AdminController@update');
-    Route::delete('santri/{id}/delete', 'AdminController@delete');
+    //Santri
+    Route::get('santri', 'Admin\SantriController@index');
+    Route::get('santri/create', 'Admin\SantriController@create');
+    Route::post('santri', 'Admin\SantriController@store');
+    Route::get('santri/{id}/edit', 'Admin\SantriController@edit');
+    Route::put('santri', 'Admin\SantriController@update');
+    Route::delete('santri/{id}/delete', 'Admin\SantriController@delete');
+
+    //Asatidz
+    Route::get('guru','Admin\AsatidzController@index');
+    Route::get('guru/create', 'Admin\AsatidzController@create');
+    Route::post('guru', 'Admin\AsatidzController@store');
 });
