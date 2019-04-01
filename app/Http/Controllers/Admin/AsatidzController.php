@@ -42,6 +42,45 @@ class AsatidzController extends Controller
     public function edit($id)
     {
         $guru   = AsatidzModel::find($id);
-        return view($this->folder.'.edit');
+        return view($this->folder.'.edit', compact('guru'));
+    }
+    public function update(Request $request)
+    {
+        $this->validate($request,[
+            'nama'  => 'required|max:30',
+            'nip'  => 'required|max:20',
+            'hp'  => 'required|max:12',
+            'email'  => 'required|max:30',
+        ]);
+        $id     = $request->id;
+        if ($request->hasFile('poto'))
+        {
+            $poto   = $request->poto;
+            $path   = $poto->store('public/gambarGuru');
+            AsatidzModel::find($id)->update([
+                'nama'  => $request->nama,
+                'nip'  => $request->nip,
+                'gender'  => $request->gender,
+                'hp'  => $request->hp,
+                'email'  => $request->email,
+                'poto'  => $path
+            ]);
+        }
+        else
+        {
+            AsatidzModel::find($id)->update([
+                'nama'  => $request->nama,
+                'nip'  => $request->nip,
+                'gender'  => $request->gender,
+                'hp'  => $request->hp,
+                'email'  => $request->email
+            ]);
+        }
+        return redirect('admin/guru')->with('success', 'Data berhasil diubah');
+    }
+    public function delete($id)
+    {
+        AsatidzModel::find($id)->delete();
+        return redirect('admin/guru')->with('success', 'Data berhasil dihapus');
     }
 }

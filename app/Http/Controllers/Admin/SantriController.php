@@ -85,11 +85,11 @@ class SantriController extends Controller
                 'gender'  => $request->gender,
             ]);
         }
-        return redirect('admin/santri');
+        return redirect('admin/santri')->with('success', 'Data berhasil diubah');
     }
     public function delete($id)
     {
         SantriModel::find($id)->delete();
-        return redirect('admin/santri');
+        return redirect('admin/santri')->with('success', 'Data berhasil dihapus');
     }
 }

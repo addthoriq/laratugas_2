@@ -29,4 +29,7 @@ Route::prefix('admin')->group(function(){
     Route::get('guru','Admin\AsatidzController@index');
     Route::get('guru/create', 'Admin\AsatidzController@create');
     Route::post('guru', 'Admin\AsatidzController@store');
+    Route::get('guru/{id}/edit', 'Admin\AsatidzController@edit');
+    Route::put('guru', 'Admin\AsatidzController@update');
+    Route::delete('guru/{id}/delete', 'Admin\AsatidzController@delete');
 });
