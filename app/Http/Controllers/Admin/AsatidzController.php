@@ -25,7 +25,7 @@ class AsatidzController extends Controller
             'nip'  => 'required|max:20',
             'gender'  => 'required',
             'hp'  => 'required|max:12',
-            'email'  => 'required|max:30',
+            'email'  => 'required|email|unique:asatidz,email',
         ]);
         $poto   = $request->poto;
         $path   = $poto->store('public/gambarGuru');
@@ -46,13 +46,13 @@ class AsatidzController extends Controller
     }
     public function update(Request $request)
     {
+        $id     = $request->id;
         $this->validate($request,[
             'nama'  => 'required|max:30',
             'nip'  => 'required|max:20',
             'hp'  => 'required|max:12',
-            'email'  => 'required|max:30',
+            'email'  => 'required|email|unique:asatidz,email,'.$id,
         ]);
-        $id     = $request->id;
         if ($request->hasFile('poto'))
         {
             $poto   = $request->poto;

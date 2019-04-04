@@ -22,7 +22,7 @@ class SantriController extends Controller
     {
         $this->validate($request, [
             'nama'  => 'required',
-            'email'  => 'required|max:30',
+            'email'  => 'required|email|unique:asatidz,email',
             'password'  => 'required|max:30',
             'gender'    => 'required'
         ]);
@@ -31,7 +31,7 @@ class SantriController extends Controller
         $santri         = new SantriModel;
         $santri->nama   = $request->nama;
         $santri->email   = $request->email;
-        $santri->password   = $request->password;
+        $santri->password   = bcrypt($request->password);
         $santri->gender   = $request->gender;
         $santri->poto   = $path;
         $santri->save();
@@ -59,11 +59,22 @@ class SantriController extends Controller
     }
     public function update(Request $request)
     {
-        $this->validate($request,[
-            'nama'  => 'required',
-            'email'  => 'required|max:30',
-        ]);
         $id     = $request->id;
+        $data   = $request->all();
+        if (empty($data['password'])) {
+            unset($data['password']);
+            $this->validate($request,[
+                'nama'  => 'required',
+                'email'  => 'required|email|unique:asatidz,email,'.$id,
+            ]);
+        }else {
+            $this->validate($request,[
+                'nama'  => 'required',
+                'email'  => 'required|email|unique:asatidz,email,'.$id,
+                'password'  => 'sometimes|min:5',
+            ]);
+        }
+
         if ($request->hasFile('poto'))
         {
             $poto   = $request->file('poto');

@@ -91,6 +91,6 @@
 <script src="{{asset('Adminlte/dist/js/adminlte.min.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('Adminlte/dist/js/demo.js')}}"></script>
-<script src="{{asset('js/jawa.js')}}"></script>
+{{-- <script src="{{asset('js/jawa.js')}}"></script> --}}
 </body>
 </html>

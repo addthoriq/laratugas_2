@@ -52,6 +52,11 @@
                   <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
                   <div class="col-sm-10">
                     <input type="password" name="password" class="form-control" id="inputPassword3">
+                    @if ($errors->has('password'))
+                        <span class="text-danger">
+                            {{$errors->first('password')}}
+                        </span>
+                    @endif
                   </div>
                 </div>
                 <div class="form-group">
